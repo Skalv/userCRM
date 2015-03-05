@@ -1,0 +1,39 @@
+<div class="page-header">
+  <h1>
+    Users
+    <a href="/users/create" class="btn btn-default">
+      <span class="glyphicon glyphicon-plus">
+        New User
+      </span>
+    </a>
+  </h1>
+</div>
+
+<!-- Loading Message -->
+<div class="jumbotron text-center" ng-show="user.processing">
+  <span class="glyphicon glyphicon-repeat spinner"></span>
+  <p>Loading Users...</p>
+</div>
+
+<table class="table table-bordered table-striped" ng-show="user.users">
+  <thead>
+    <tr>
+      <th>_id</th>
+      <th>name</th>
+      <th>username</th>
+      <th class="col-sm-2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Loop over the users -->
+    <tr ng-repeat="person in user.users">
+      <td>{{ person._id }}</td>
+      <td>{{ person.name }}</td>
+      <td>{{ person.username }}</td>
+      <td class="col-sm-2">
+        <a class="btn btn-warning" ng-href="/users/{{ person._id }}">Edit</a>
+        <a class="btn btn-danger" ng-click="user.deleteUser(person._id)">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
